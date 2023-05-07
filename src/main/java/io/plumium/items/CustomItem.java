@@ -5,8 +5,8 @@ import org.bukkit.inventory.ItemStack;
 
 public abstract class CustomItem {
 
-    public static final NamespacedKey ITEM_ID = new NamespacedKey("plumium", "item_id");
-    public static final NamespacedKey ITEM_TYPE = new NamespacedKey("plumium", "item_type");
+    public static final NamespacedKey CUSTOM_ITEM_ID = new NamespacedKey("plumium", "item_id");
+    public static final NamespacedKey CUSTOM_ITEM_TYPE = new NamespacedKey("plumium", "item_type");
 
     protected String id;
     protected ItemStack itemStack;
