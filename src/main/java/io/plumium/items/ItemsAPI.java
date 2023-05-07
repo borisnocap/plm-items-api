@@ -1,12 +1,6 @@
 package io.plumium.items;
 
-import org.bukkit.NamespacedKey;
-
 public interface ItemsAPI {
-
-    NamespacedKey ITEM_ID();
-
-    NamespacedKey ITEM_TYPE();
 
     CustomItem PLUMCOIN();
 
