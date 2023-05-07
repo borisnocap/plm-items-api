@@ -1,12 +1,18 @@
 package io.plumium.items;
 
+import org.bukkit.NamespacedKey;
+
 public interface ItemsAPI {
 
-    CustomItem getPlumcoin();
+    NamespacedKey ITEM_ID();
 
-    CustomItem getOverworldChunk();
+    NamespacedKey ITEM_TYPE();
 
-    CustomItem getNetherChunk();
+    CustomItem PLUMCOIN();
 
-    CustomItem getEndChunk();
+    CustomItem OVERWORLD_CHUNK();
+
+    CustomItem NETHER_CHUNK();
+
+    CustomItem END_CHUNK();
 }
