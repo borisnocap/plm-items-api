@@ -1,5 +1,8 @@
 package io.plumium.items;
 
+import net.kyori.adventure.text.Component;
+import org.bukkit.inventory.ItemStack;
+
 public interface ItemsAPI {
 
     CustomItem PLUMCOIN();
@@ -8,5 +11,7 @@ public interface ItemsAPI {
 
     CustomItem NETHER_CHUNK();
 
-    CustomItem END_CHUNK();
+    CustomItem THE_END_CHUNK();
+
+    Component getItemDisplayName(ItemStack item);
 }
