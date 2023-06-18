@@ -14,4 +14,6 @@ public interface ItemsAPI {
     CustomItem THE_END_CHUNK();
 
     Component getItemDisplayName(ItemStack item);
+
+    String getTranslation(String translationKey);
 }
