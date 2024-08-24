@@ -11,8 +11,8 @@ public abstract class CustomItem extends ItemStack {
     protected Rarity rarity;
     protected Component displayName;
 
-    public CustomItem() {
-        super(Material.PLAYER_HEAD);
+    public CustomItem(@NotNull final Material type) {
+        super(type);
     }
 
     public String getId() {
