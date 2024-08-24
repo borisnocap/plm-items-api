@@ -1,21 +1,21 @@
 package io.plumium.items;
 
-import org.bukkit.NamespacedKey;
+import net.kyori.adventure.text.Component;
 import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.NotNull;
 
-public abstract class CustomItem {
-
-    public static final NamespacedKey CUSTOM_ITEM_ID = new NamespacedKey("plumium", "item_id");
-    public static final NamespacedKey CUSTOM_ITEM_TYPE = new NamespacedKey("plumium", "item_type");
+public abstract class CustomItem extends ItemStack {
 
     protected String id;
-    protected ItemStack itemStack;
+    protected Rarity rarity;
+    protected Component displayName;
 
     public String getId() {
         return id;
     }
 
-    public ItemStack getItemStack() {
-        return itemStack;
+    @Override
+    public @NotNull Component displayName() {
+        return displayName;
     }
 }
