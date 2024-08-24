@@ -6,7 +6,7 @@
 
     <groupId>ru.plm</groupId>
     <artifactId>plm-items-api</artifactId>
-    <version>1.20.4</version>
+    <version>1.21.1</version>
 
     <repositories>
         <repository>
@@ -23,4 +23,18 @@
             <scope>provided</scope>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>21</source>
+                    <target>21</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
