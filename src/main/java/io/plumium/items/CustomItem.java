@@ -1,6 +1,7 @@
 package io.plumium.items;
 
 import net.kyori.adventure.text.Component;
+import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
@@ -9,6 +10,10 @@ public abstract class CustomItem extends ItemStack {
     protected String id;
     protected Rarity rarity;
     protected Component displayName;
+
+    public CustomItem() {
+        super(Material.PLAYER_HEAD);
+    }
 
     public String getId() {
         return id;
