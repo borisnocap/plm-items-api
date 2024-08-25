@@ -22,6 +22,7 @@ public enum Rarity {
     private final Style style;
     private final int colorValue;
 
+
     Rarity(TextColor color) {
         this.style = Style.style().color(color).decoration(TextDecoration.ITALIC, false).build();
         colorValue = color.value();
@@ -31,6 +32,8 @@ public enum Rarity {
         return style;
     }
 
-
+    public TextColor getColor() {
+        return style.color();
+    }
 
 }
