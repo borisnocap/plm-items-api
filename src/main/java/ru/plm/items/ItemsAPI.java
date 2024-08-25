@@ -1,4 +1,4 @@
-package io.plumium.items;
+package ru.plm.items;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
