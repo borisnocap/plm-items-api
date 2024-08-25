@@ -7,16 +7,6 @@ import org.bukkit.persistence.PersistentDataType;
 
 public interface ItemsAPI {
 
-    CustomItem PLUMCOIN();
-
-    CustomItem OVERWORLD_CHUNK();
-
-    CustomItem NETHER_CHUNK();
-
-    CustomItem THE_END_CHUNK();
-
-    Component getItemDisplayName(ItemStack item);
-
     CustomItem getCustomItem(String customItemId);
 
     String getTranslation(String translationKey);
