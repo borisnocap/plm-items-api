@@ -91,7 +91,7 @@ public interface ItemsAPI {
         if (rarity == null) {
             return item.displayName();
         }
-        return item.displayName().color(getRarity(item).getStyle().color());
+        return item.displayName().color(getRarity(item).getColor());
     }
 
     ItemStack getItem(String customItemId);

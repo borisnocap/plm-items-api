@@ -17,9 +17,15 @@ public enum Rarity {
     WONDERFUL(GREEN);
 
     private final Style style;
+    private final TextColor color;
 
     Rarity(TextColor color) {
+        this.color = color;
         this.style = Style.style().color(color).decoration(TextDecoration.ITALIC, false).build();
+    }
+
+    public TextColor getColor() {
+        return color;
     }
 
     public Style getStyle() {
