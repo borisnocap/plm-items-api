@@ -9,7 +9,7 @@ import org.jetbrains.annotations.Nullable;
 
 import static net.kyori.adventure.text.Component.text;
 
-public abstract class CustomItem extends ItemStack {
+public class CustomItem extends ItemStack {
 
     protected String id;
     protected Rarity rarity;
@@ -19,7 +19,8 @@ public abstract class CustomItem extends ItemStack {
     public CustomItem(@NotNull final Material type,
                       @NotNull final String id,
                       @NotNull final String name,
-                      @NotNull final Rarity rarity) {
+                      @NotNull final Rarity rarity,
+                      @NotNull ItemsAPI itemsAPI) {
         super(type);
         itemMeta = super.getItemMeta();
         this.id = id;
@@ -31,6 +32,7 @@ public abstract class CustomItem extends ItemStack {
                 .append(text("]"))
                 .hoverEvent(asHoverEvent())
                 .build();
+        itemsAPI.registerCustomItem(this);
     }
 
     @Override
