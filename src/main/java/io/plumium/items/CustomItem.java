@@ -48,4 +48,12 @@ public abstract class CustomItem extends ItemStack {
         this.itemMeta = itemMeta;
         return super.setItemMeta(itemMeta);
     }
+
+    public String getId() {
+        return id;
+    }
+
+    public Rarity getCustomRarity() {
+        return rarity;
+    }
 }
