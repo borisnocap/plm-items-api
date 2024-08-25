@@ -2,24 +2,33 @@ package io.plumium.items;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
+import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
 
+import javax.annotation.Nullable;
+
+@SuppressWarnings("unused")
 public interface ItemsAPI {
 
-    void registerCustomItem(CustomItem customItem);
+    NamespacedKey ITEM_ID_KEY = new NamespacedKey("plm-items", "id");
 
-    CustomItem getCustomItem(String customItemId);
+    void registerCustomItem(String id, ItemStack item);
 
-    String getTranslation(String translationKey);
+    ItemStack getItem(String customItemId);
 
     default boolean isCustom(ItemStack item) {
         // Если у предмета есть запись о редкости, тогда это кастомный предмет.
-        return item.getPersistentDataContainer().has(Rarity.RARITY_KEY,  PersistentDataType.STRING);
+        return item.getPersistentDataContainer().has(Rarity.ITEM_RARITY_KEY,  PersistentDataType.STRING);
+    }
+
+    @Nullable
+    default String getID(ItemStack item) {
+        return item.getPersistentDataContainer().get(ITEM_ID_KEY,  PersistentDataType.STRING);
     }
 
     default Rarity getRarity(ItemStack item) {
-        String rarity = item.getPersistentDataContainer().get(Rarity.RARITY_KEY,  PersistentDataType.STRING);
+        String rarity = item.getPersistentDataContainer().get(Rarity.ITEM_RARITY_KEY,  PersistentDataType.STRING);
         /*
         Если нет записи о редкости, то это стандартный предмет Minecraft и его редкость определяется на основе
         цвета его названия (на момент 1.21.1 их всего 4).
@@ -83,4 +92,6 @@ public interface ItemsAPI {
         }
         return item.displayName();
     }
+
+    String getTranslation(String translationKey);
 }

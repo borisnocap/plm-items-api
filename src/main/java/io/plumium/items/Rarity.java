@@ -17,15 +17,12 @@ public enum Rarity {
     ARTEFACT(RED),
     WONDERFUL(GREEN);
 
-    public static final NamespacedKey RARITY_KEY = new NamespacedKey("plm-items", "rarity");
+    public static final NamespacedKey ITEM_RARITY_KEY = new NamespacedKey("plm-items", "rarity");
 
     private final Style style;
-    private final int colorValue;
-
 
     Rarity(TextColor color) {
         this.style = Style.style().color(color).decoration(TextDecoration.ITALIC, false).build();
-        colorValue = color.value();
     }
 
     public Style getStyle() {
@@ -35,5 +32,4 @@ public enum Rarity {
     public TextColor getColor() {
         return style.color();
     }
-
 }
