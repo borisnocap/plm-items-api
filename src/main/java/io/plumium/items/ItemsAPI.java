@@ -13,8 +13,6 @@ public interface ItemsAPI {
 
     NamespacedKey ITEM_ID_KEY = new NamespacedKey("plm-items", "id");
 
-    void registerCustomItem(String id, ItemStack item);
-
     ItemStack getItem(String customItemId);
 
     default boolean isCustom(ItemStack item) {
