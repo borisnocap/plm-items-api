@@ -7,6 +7,8 @@ import org.bukkit.persistence.PersistentDataType;
 
 public interface ItemsAPI {
 
+    void registerCustomItem(CustomItem customItem);
+
     CustomItem getCustomItem(String customItemId);
 
     String getTranslation(String translationKey);
