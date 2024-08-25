@@ -12,6 +12,7 @@ import static net.kyori.adventure.text.Component.text;
 public class CustomItem extends ItemStack {
 
     protected String id;
+    protected String name;
     protected Rarity rarity;
     protected ItemMeta itemMeta;
     protected Component displayName;
@@ -24,6 +25,7 @@ public class CustomItem extends ItemStack {
         super(type);
         itemMeta = super.getItemMeta();
         this.id = id;
+        this.name = name;
         this.rarity = rarity;
         displayName = text()
                 .color(rarity.getColor())
@@ -47,8 +49,17 @@ public class CustomItem extends ItemStack {
 
     @Override
     public boolean setItemMeta(@Nullable ItemMeta itemMeta) {
+        boolean result = super.setItemMeta(itemMeta);
+        if (!result) return false;
         this.itemMeta = itemMeta;
-        return super.setItemMeta(itemMeta);
+        displayName = text()
+                .color(rarity.getColor())
+                .append(text("["))
+                .append(text(name))
+                .append(text("]"))
+                .hoverEvent(asHoverEvent())
+                .build();
+        return true;
     }
 
     public String getId() {
