@@ -12,12 +12,14 @@ import javax.annotation.Nullable;
 public interface ItemsAPI {
 
     NamespacedKey ITEM_ID_KEY = new NamespacedKey("plm-items", "id");
+    PersistentDataType<String, String> ITEM_ID_KEY_TYPE = PersistentDataType.STRING;
 
-    ItemStack getItem(String customItemId);
+    NamespacedKey ITEM_RARITY_KEY = new NamespacedKey("plm-items", "rarity");
+    PersistentDataType<String, String> ITEM_RARITY_KEY_TYPE = PersistentDataType.STRING;
 
     default boolean isCustom(ItemStack item) {
-        // Если у предмета есть запись о редкости, тогда это кастомный предмет.
-        return item.getPersistentDataContainer().has(Rarity.ITEM_RARITY_KEY,  PersistentDataType.STRING);
+        // Если у предмета есть запись об ID, тогда это кастомный предмет.
+        return item.getPersistentDataContainer().has(ITEM_ID_KEY,  PersistentDataType.STRING);
     }
 
     @Nullable
@@ -26,7 +28,7 @@ public interface ItemsAPI {
     }
 
     default Rarity getRarity(ItemStack item) {
-        String rarity = item.getPersistentDataContainer().get(Rarity.ITEM_RARITY_KEY,  PersistentDataType.STRING);
+        String rarity = item.getPersistentDataContainer().get(ITEM_RARITY_KEY,  PersistentDataType.STRING);
         /*
         Если нет записи о редкости, то это стандартный предмет Minecraft и его редкость определяется на основе
         цвета его названия (на момент 1.21.1 их всего 4).
@@ -37,9 +39,6 @@ public interface ItemsAPI {
             if (color == null) return Rarity.COMMON;
             // В качестве ключей используются значения констант из NamedTextColor.
             switch (color.value()) {
-                default -> {
-                    return Rarity.COMMON; // 0xffffff
-                }
                 case 0xffff55 -> {
                     return Rarity.UNCOMMON;
                 }
@@ -49,13 +48,13 @@ public interface ItemsAPI {
                 case 0xff55ff -> {
                     return Rarity.EPIC;
                 }
+                default -> {
+                    return Rarity.COMMON; // 0xffffff
+                }
             }
         }
         // Если запись о редкости имеется, то это кастомный предмет.
         switch (rarity) {
-            default -> {
-                return Rarity.COMMON;
-            }
             case "uncommon" -> {
                 return Rarity.UNCOMMON;
             }
@@ -74,22 +73,28 @@ public interface ItemsAPI {
             case "wonderful" -> {
                 return Rarity.WONDERFUL;
             }
+            default -> {
+                return Rarity.COMMON;
+            }
         }
     }
 
+    /**
+     * У кастомных предметов цвет имени может не совпадать с цветом скобок, которые сервер возвращает при вызове
+     * displayName().
+     * Пример: imgur.com/a/Q7V8ABx
+     * Поэтому, если предмет кастомный (у него есть запись о редкости), нужно окрасить "[Предмет]" в
+     * цвет его редкости.
+     */
     default Component getDisplayName(ItemStack item) {
-        /*
-        У кастомных предметов цвет имени может не совпадать с цветом скобок, которые сервер возвращает при вызове
-        displayName().
-        Пример: imgur.com/a/Q7V8ABx
-        Поэтому, если предмет кастомный (у него есть запись о редкости), нужно окрасить "[Предмет]" в
-        цвет его редкости.
-        */
-        if (isCustom(item)) {
-            return item.displayName().style(getRarity(item).getStyle());
+        String rarity = item.getPersistentDataContainer().get(ITEM_RARITY_KEY,  PersistentDataType.STRING);
+        if (rarity == null) {
+            return item.displayName();
         }
-        return item.displayName();
+        return item.displayName().style(getRarity(item).getStyle());
     }
+
+    ItemStack getItem(String customItemId);
 
     String getTranslation(String translationKey);
 }

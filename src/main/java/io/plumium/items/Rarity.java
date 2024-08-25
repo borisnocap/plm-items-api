@@ -3,7 +3,6 @@ package io.plumium.items;
 import net.kyori.adventure.text.format.Style;
 import net.kyori.adventure.text.format.TextColor;
 import net.kyori.adventure.text.format.TextDecoration;
-import org.bukkit.NamespacedKey;
 
 import static net.kyori.adventure.text.format.NamedTextColor.*;
 
@@ -17,8 +16,6 @@ public enum Rarity {
     ARTEFACT(RED),
     WONDERFUL(GREEN);
 
-    public static final NamespacedKey ITEM_RARITY_KEY = new NamespacedKey("plm-items", "rarity");
-
     private final Style style;
 
     Rarity(TextColor color) {
@@ -27,9 +24,5 @@ public enum Rarity {
 
     public Style getStyle() {
         return style;
-    }
-
-    public TextColor getColor() {
-        return style.color();
     }
 }
