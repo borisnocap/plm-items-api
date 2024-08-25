@@ -4,6 +4,7 @@ import net.kyori.adventure.text.Component;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 
@@ -21,11 +22,15 @@ public interface ItemsAPI {
     @Nullable
     String getID(ItemStack item);
 
+    @NotNull
     Rarity getRarity(ItemStack item);
 
+    @NotNull
     Component getDisplayName(ItemStack item);
 
+    @NotNull
     ItemStack getItem(String customItemId);
 
+    @NotNull
     String getTranslation(String translationKey);
 }
