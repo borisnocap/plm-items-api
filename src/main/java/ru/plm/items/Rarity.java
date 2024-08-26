@@ -13,8 +13,7 @@ public enum Rarity {
     RARE(AQUA),
     EPIC(LIGHT_PURPLE),
     LEGENDARY(GOLD),
-    ARTEFACT(RED),
-    WONDERFUL(GREEN);
+    ARTEFACT(RED);
 
     private final TextColor color;
     private final Style nonItalicColor;
